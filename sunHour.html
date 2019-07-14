@@ -1,17 +1,16 @@
 <!DOCTYPE html>
+<meta charset="EUC-KR">
 <html>
 <body>
 
-<meta charset="EUC-KR">
+<h2>íƒœì–‘ê´‘ ìì› ì¡°íšŒ (NASA POWER)</h2>
 
-<h2>ÅÂ¾ç±¤ ÀÚ¿ø Á¶È¸ (NASA POWER)</h2>
+<p>ìœ„ë„, ê²½ë„ë¥¼ ì…ë ¥í•˜ì„¸ìš”</p>
 
-<p>À§µµ, °æµµ¸¦ ÀÔ·ÂÇÏ¼¼¿ä</p>
+ìœ„ë„: <input type="number" id="lat" value="37.5667">
+ê²½ë„: <input type="number" id="lon" value="126.9850">
 
-À§µµ: <input type="number" id="lat" value="37.5667">
-°æµµ: <input type="number" id="lon" value="126.9850">
-
-<button onclick="targetPosition()">È®ÀÎ</button>
+<button onclick="targetPosition()">í™•ì¸</button>
 
 <p id="location"></p>
 
@@ -53,7 +52,7 @@ function httpGetAsync(theUrl)
   }
   xmlHttp.open("GET", theUrl, true); // true for asynchronous 
   xmlHttp.send(null);
-  document.getElementById("location").innerHTML = "Á¶È¸Áß...";
+  document.getElementById("location").innerHTML = "ì¡°íšŒì¤‘...";
 }
 
 function asyncProcess(url) {
@@ -75,37 +74,37 @@ function asyncProcess(url) {
     if (angSetVal[i] <= OPTIMAL_ANG)
       angIndex = i;
   IRRADIATION = resPara[angSetName[angIndex]]["13"];
-  document.getElementById("location").innerHTML = "ÃÖÀû °æ»ç°¢: " + OPTIMAL_ANG + "<br>¿¬°£ ÀÏÆò±Õ ÀÏ»ç·®: " + IRRADIATION + " kW-hr/m^2/day<br>";
-  document.getElementById("text").innerHTML = "»ó¼¼Á¤º¸";
+  document.getElementById("location").innerHTML = "ìµœì  ê²½ì‚¬ê°: " + OPTIMAL_ANG + "<br>ì—°ê°„ ì¼í‰ê·  ì¼ì‚¬ëŸ‰: " + IRRADIATION + " kW-hr/m^2/day<br>";
+  document.getElementById("text").innerHTML = "ìƒì„¸ì •ë³´";
   document.getElementById("text").href = resObj.outputs.ascii;
-  document.getElementById("csv").innerHTML = "´Ù¿î·Îµå";
+  document.getElementById("csv").innerHTML = "ë‹¤ìš´ë¡œë“œ";
   document.getElementById("csv").href = resObj.outputs.csv;
 
-  document.getElementById("title").innerHTML = "¹ßÀü ½Ã°£ ÃßÁ¤";
-  document.getElementById("lossMsg").innerHTML = "¼Õ½Ç·üÀ» ÀÔ·ÂÇÏ¼¼¿ä"
+  document.getElementById("title").innerHTML = "ë°œì „ ì‹œê°„ ì¶”ì •";
+  document.getElementById("lossMsg").innerHTML = "ì†ì‹¤ë¥ ì„ ì…ë ¥í•˜ì„¸ìš”"
 
   moduleLoss = document.createElement("INPUT");
   moduleLoss.setAttribute("type", "number");
   moduleLoss.setAttribute("value", 0.15);
-  document.getElementById("loss").innerHTML = "¸ğµâ ¼Õ½Ç: ";
+  document.getElementById("loss").innerHTML = "ëª¨ë“ˆ ì†ì‹¤: ";
   document.getElementById("loss").appendChild(moduleLoss);
 
   acLoss = document.createElement("INPUT");
   acLoss.setAttribute("type", "number");
   acLoss.setAttribute("value", 0.05);
-  textnode = document.createTextNode(" DC to AC ÀüÈ¯ ¼Õ½Ç: ");
+  textnode = document.createTextNode(" DC to AC ì „í™˜ ì†ì‹¤: ");
   document.getElementById("loss").appendChild(textnode);
   document.getElementById("loss").appendChild(acLoss);
   textnode = document.createTextNode(" ");
   document.getElementById("loss").appendChild(textnode);
   btn = document.createElement("BUTTON");
-  btn.innerHTML = "È®ÀÎ";
+  btn.innerHTML = "í™•ì¸";
   document.getElementById("loss").appendChild(btn);
 
   btn.addEventListener('click', function() {
     totalLoss = 1 - (1 - moduleLoss.value) * (1 - acLoss.value)
     sunHour = IRRADIATION * (1 - totalLoss);
-    document.getElementById("pv").innerHTML = "ÀüÃ¼ ¼Õ½Ç: " + totalLoss + "<br>¿¬°£ ÀÏÆò±Õ ¹ßÀü½Ã°£: " + sunHour + " hour/day";
+    document.getElementById("pv").innerHTML = "ì „ì²´ ì†ì‹¤: " + totalLoss + "<br>ì—°ê°„ ì¼í‰ê·  ë°œì „ì‹œê°„: " + sunHour + " hour/day";
   }, false);
 }
 
