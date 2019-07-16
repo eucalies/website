@@ -63,6 +63,9 @@ function httpGetAsync(theUrl)
   xmlHttp.open("GET", theUrl, true); // true for asynchronous 
   xmlHttp.send(null);
   document.getElementById("location").innerHTML = "조회중...";
+  document.getElementById("text").innerHTML = "";
+  document.getElementById("csv").innerHTML = "";
+  document.getElementById("pv").innerHTML = "";
 }
 
 function asyncProcess(url) {
